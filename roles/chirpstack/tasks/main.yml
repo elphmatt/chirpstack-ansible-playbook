@@ -56,6 +56,17 @@
   notify:
     - reload nginx
 
+
+- name: replace US915 region with new toml
+  copy:
+    src: region_us915_0.toml
+    dest: /etc/chirpstack/region_us915_0.toml
+    owner: chirpstack
+    group: chirpstack
+    mode: '0640'
+  notify:
+    - restart chirpstack
+
 - name: start chirpstack on boot
   ansible.builtin.service:
     name: chirpstack
